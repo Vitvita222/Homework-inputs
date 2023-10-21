@@ -3,25 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="login.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-    <title>Vito's Register</title>
+    <title>Vito's Login</title>
 <body>
     <div class="reg-log">
         <div class="section1">
             <a href="/index.html"><button>Register</button></a>
         </div>
         <div class="section2">
-            <a href="/login.html"><button>Login</button></a>
+            <a href="/login.html"><button class="active">Login</button></a>
         </div>
     </div>
 
     <div class="wrapper">
-        <h1>REGISTER</h1>
-        <div class="name">
-            <p>Name:</p>
-            <input type="text" id="nameinp" required>
-        </div>
+        <h1>LOGIN</h1>
         <div class="email">
             <p>Email:</p>
             <input type="email" id="emailinp" required>
@@ -36,28 +32,28 @@
     </div>
 
     <script>
-        nameInput = document.getElementById("nameinp");
         emailInput = document.getElementById("emailinp");
         passwordInput = document.getElementById("passwordinp");
 
-        var accs = []
-
         function submitform(){
-            var name = nameInput.value
             var email = emailInput.value
             var pass = passwordInput.value
-            
-            var isRegistered = accs.some(function(accounts) {
-                return accounts[1] === email
+            var accs = JSON.parse(localStorage.getItem('accounts'));
+
+
+            var isLoged = accs.some(function(accounts) {
+                if (accounts[1] === email & accounts[2] === pass){
+                    return true
+                }
             })
 
-            if (isRegistered){
-                console.log("alredy registered")
+            if (isLoged){
+                alert("Succesfully Logged")
             } else {
-                accs.push([name, email, pass])
-                localStorage.setItem('accounts', JSON.stringify(accs));
+                alert("Email or Password might be Wrong!!")
             }
         }
+
     </script>
 </body>
 </html>
